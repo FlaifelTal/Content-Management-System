@@ -105,7 +105,7 @@ class postcontroller extends Controller
 
             $fileName = time() . '_' . $request->image->getClientOriginalName(); //change the file name with a unique one 
             $filePath = $request->image->storeAs('public/uploads', $fileName);// its supposed to be only uploads 
-            File::delete(public_path($post->image));
+            // File::delete(public_path($post->image));
             $post->image = 'storage/' . $filePath;
         }
         //  elseif (!$post->image) {
@@ -145,7 +145,7 @@ class postcontroller extends Controller
     }
     public function forceDelete($id)  {
         $post = post::onlyTrashed()->findOrFail($id);
-        File::delete(public_path($post->image));
+        // File::delete(public_path($post->image));
         $post->forceDelete();
         return redirect()->back();
     
